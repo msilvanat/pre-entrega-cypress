@@ -1,6 +1,7 @@
 export class ShoppingCartPage {
   constructor() {
     this.showText = 'Show total price';
+    this.price = '#price';
   };
 
   verifyProductName(product) {
@@ -15,7 +16,7 @@ export class ShoppingCartPage {
     cy.contains(this.showText).click();
   };
 
-  returnTotalPrice(price1, price2) {
-    return cy.contains(price1 + price2);
+  verifyTotalPrice() {
+    return cy.get(this.price);
   }
 };

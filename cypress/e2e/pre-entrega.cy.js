@@ -39,10 +39,10 @@ describe("Testing Online Shop Module", () => {
     productsPage.clickGoShoppingCart();
     shoppingCartPage.verifyProductName(productsData.firstProduct.value).should('have.text', productsData.firstProduct.value);
     shoppingCartPage.verifyProductName(productsData.secondProduct.value).should('have.text', productsData.secondProduct.value);
-    shoppingCartPage.verifyPrice(productsData.firstProduct.value, productsData.firstProduct.price).should('exist');
-    shoppingCartPage.verifyPrice(productsData.secondProduct.value, productsData.secondProduct.price).should('exist');
+    shoppingCartPage.verifyPrice(productsData.firstProduct.value, productsData.firstProduct.price).should('have.text', `$${productsData.firstProduct.price}`);
+    shoppingCartPage.verifyPrice(productsData.secondProduct.value, productsData.secondProduct.price).should('have.text', `$${productsData.secondProduct.price}`);
     shoppingCartPage.clickShowTotalPrice();
-    shoppingCartPage.returnTotalPrice(productsData.firstProduct.price, productsData.secondProduct.price).should('be.visible');
+    shoppingCartPage.verifyTotalPrice().invoke('text').should('be.equal', `${productsData.firstProduct.price + productsData.secondProduct.price}`);
   });
 
   afterEach('after each', () => {
